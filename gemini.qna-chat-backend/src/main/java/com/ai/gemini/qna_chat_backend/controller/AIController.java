@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Map;
 
 @RestController
-//@AllArgsConstructor
-@RequestMapping("/ask/qna")
+@AllArgsConstructor
+@RequestMapping("/api/qna/ask")
 public class AIController {
-    @Autowired
-    private  QnaService service;
+
+    private final  QnaService service;
     @GetMapping
     public ResponseEntity<String> askQuestion(@RequestBody Map<String, String> payload) {
         String question = payload.get("question");
