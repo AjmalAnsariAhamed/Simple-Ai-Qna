@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 
-function ChatInput() {
+function ChatInput({onSubmit}) {
   const [question, setQuestion] = useState("");
   const textareaRef = useRef(null);
   const handleInputChange = (e) => {
@@ -11,18 +11,16 @@ function ChatInput() {
     textarea.style.height = "auto"; // Reset height to auto to recalculate
     textarea.style.height = `${textarea.scrollHeight}px`; // Set height to match content
   };
-  
-  const handleSubmit=(e)=>{
-    e.preventDefault
-    if (question.trim()){
-      setQuestion("")
 
+  const handleSubmit = (e) => {
+    e.preventDefault;
+    if (question.trim()) {
+      onSubmit(question)
+      setQuestion("");
+    } else {
+      alert("enter the question");
     }
-    else{
-      alert("enter the question")
-    }
-    
-  }
+  };
 
   return (
     <div className="container  min-w-full bg-[#1b263b] text-[#e0e1dd] ">
@@ -41,13 +39,12 @@ function ChatInput() {
           }}
           placeholder="Ask a Question"
           rows={1}
-          style={{ overflow: "hidden", resize:"none" }} // Hide scrollbars
+          style={{ overflow: "hidden", resize: "none" }} // Hide scrollbars
         />
         <button
-          className="bg-[#e0e1dd] px-2 py-1 text-[#0d1b2a] rounded-full"
+          className="bg-[#e0e1dd] px-2 py-1 font-semibold text-[#0d1b2a] rounded-full"
           onClick={handleSubmit}
         >
-         
           submit
         </button>
       </div>
